@@ -12,34 +12,27 @@ require("mason").setup()
 require("mason-lspconfig").setup {
     ensure_installed = { "lua_ls", "rust_analyzer", "pylsp" },
 }
-require("mason-null-ls").setup({
-    ensure_installed = { "isort", "black", "pylint" },
-    automatic_installation = true,
-    automatic_setup = true,
-})
+
 local null_ls = require("null-ls")
-
-require("mason-null-ls").setup_handlers {
-    function(source_name, methods)
-      -- all sources with no handler get passed here
-
-      -- To keep the original functionality of `automatic_setup = true`,
-      -- please add the line below.
-      require("mason-null-ls.automatic_setup")(source_name, methods)
-    end,
-    stylua = function(source_name, methods)
-      null_ls.register(null_ls.builtins.formatting.stylua)
-    end,
-}
-
 local null_ls_sources = {
     null_ls.builtins.diagnostics.mypy.with({
-        -- prefer_local = ".venv/bin",
-        only_local = true,
+        only_local =  ".venv/bin/",
     }),
+    null_ls.builtins.diagnostics.pylint.with({
+        only_local =  ".venv/bin",
+    }),
+    null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.black,
 }
+
 null_ls.setup({
     sources = null_ls_sources
+})
+
+require("mason-null-ls").setup({
+    ensure_installed = { nil },
+    automatic_installation = false,
+    automatic_setup = false,
 })
 
 -- Mappings applying even without lsp (vim diagnostics)
@@ -82,7 +75,7 @@ require("lspconfig").pylsp.setup{
         pylsp = {
             plugins = {
                 pycodestyle = {
-                    ignore = {'E203'},
+                    ignore = {'E203', 'W503'},
                     maxLineLength = 88,
                 },
                 pydocstyle = {
@@ -93,7 +86,7 @@ require("lspconfig").pylsp.setup{
                 },
                 flake8 = {
                     enabled = true,
-                    ignore = {'E203'},
+                    ignore = {'E203', 'W503'},
                     maxLineLength = 88,
                 },
             },
