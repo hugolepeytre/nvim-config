@@ -20,6 +20,7 @@ local null_ls_sources = {
     }),
     null_ls.builtins.diagnostics.pylint.with({
         only_local =  ".venv/bin",
+        method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
     null_ls.builtins.formatting.isort,
     null_ls.builtins.formatting.black,

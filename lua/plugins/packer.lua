@@ -41,7 +41,7 @@ return require('packer').startup(function(use)
     -- Additional features
     use "machakann/vim-sandwich" -- add or delete around selections
     use "terrortylor/nvim-comment" -- comment with gc{motion}
-
+    use "jiangmiao/auto-pairs" -- Autoclose pairs like brackets and quotes
 
     -- Color theme
     use({
@@ -49,4 +49,3 @@ return require('packer').startup(function(use)
         as = "nightfox",
     })
 end)
-
