@@ -13,6 +13,7 @@ require("mason-lspconfig").setup {
     ensure_installed = { "lua_ls", "rust_analyzer", "pylsp" },
 }
 
+-- only_local ensures mypy and pylint see imports
 local null_ls = require("null-ls")
 local null_ls_sources = {
     null_ls.builtins.diagnostics.mypy.with({
@@ -26,16 +27,18 @@ local null_ls_sources = {
     null_ls.builtins.formatting.black,
 }
 
+-- Ensures null_ls is always used for formatting
 local lsp_formatting = function(bufnr)
     vim.lsp.buf.format({
         filter = function(client)
-            -- apply whatever logic you want (in this example, we'll only use null-ls)
+            -- Logic can be more complicated if needed
             return client.name == "null-ls"
         end,
         bufnr = bufnr,
     })
 end
 
+-- Format on save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
     sources = null_ls_sources,
@@ -61,10 +64,10 @@ require("mason-null-ls").setup({
 
 -- Mappings applying even without lsp (vim diagnostics)
 local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>l', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', 's<leader>d', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', 'sp', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', 'sn', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', 'sl', vim.diagnostic.setloclist, opts)
 
 -- Mappings that will activate only after an lsp is attached)
 -- They have to be passed as arguments on every lsp setup below
@@ -74,22 +77,20 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', '<leader>z', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', 'lsf', vim.lsp.buf.format, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
+  vim.keymap.set('n', 'sD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'sgd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'sh', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'si', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', 's+', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', 's-', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', 'sf', vim.lsp.buf.format, bufopts)
+  vim.keymap.set('n', 's_', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  vim.keymap.set('n', 'st', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', 'sv', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', 's<leader>a', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 's<leader>r', vim.lsp.buf.references, bufopts)
 end
 
 require("lspconfig").pylsp.setup{

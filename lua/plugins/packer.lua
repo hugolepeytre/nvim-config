@@ -31,11 +31,8 @@ return require('packer').startup(function(use)
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lsp-signature-help',
-        'hrsh7th/cmp-nvim-lsp-document-symbol',
-        'ray-x/cmp-treesitter',
         'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip',
-        'petobens/poet-v',
     }
 
     -- Additional features
