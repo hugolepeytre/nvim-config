@@ -1,6 +1,9 @@
 -- Loading capabilities
 local lspconfig = require('lspconfig')
 local lsp_defaults = lspconfig.util.default_config
+local map = vim.keymap.set
+local api = vim.api
+local lspbuf = vim.lsp.buf
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
   'force',
@@ -29,7 +32,7 @@ local null_ls_sources = {
 
 -- Ensures null_ls is always used for formatting
 local lsp_formatting = function(bufnr)
-    vim.lsp.buf.format({
+    lspbuf.format({
         filter = function(client)
             -- Logic can be more complicated if needed
             return client.name == "null-ls"
@@ -39,13 +42,13 @@ local lsp_formatting = function(bufnr)
 end
 
 -- Format on save
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local augroup = api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
     sources = null_ls_sources,
     on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
+            api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            api.nvim_create_autocmd("BufWritePre", {
                 group = augroup,
                 buffer = bufnr,
                 callback = function()
@@ -62,39 +65,31 @@ require("mason-null-ls").setup({
     automatic_setup = false,
 })
 
--- Mappings applying even without lsp (vim diagnostics)
+-- Mappings for vim diagnostics
 local opts = { noremap=true, silent=true }
-vim.keymap.set('n', 's<leader>d', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', 'sp', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', 'sn', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', 'sl', vim.diagnostic.setloclist, opts)
+map('n', 's<leader>d', vim.diagnostic.open_float, opts)
+map('n', 's<leader>wd', vim.diagnostic.setqflist)
+map('n', 'sp', vim.diagnostic.goto_prev, opts)
+map('n', 'sn', vim.diagnostic.goto_next, opts)
+map('n', 'sl', vim.diagnostic.setloclist, opts)
 
--- Mappings that will activate only after an lsp is attached)
--- They have to be passed as arguments on every lsp setup below
-local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'sD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'sgd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'sh', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'si', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', 's+', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', 's-', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', 'sf', vim.lsp.buf.format, bufopts)
-  vim.keymap.set('n', 's_', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', 'st', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', 'sv', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', 's<leader>a', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 's<leader>r', vim.lsp.buf.references, bufopts)
-end
+-- Mappings for lsp
+map('n', 'sD', lspbuf.declaration, opts)
+map('n', 'sgd', lspbuf.definition, opts)
+map('n', 'sh', lspbuf.hover, opts)
+map('n', 'si', lspbuf.implementation, opts)
+map('n', 's+', lspbuf.add_workspace_folder, opts)
+map('n', 's-', lspbuf.remove_workspace_folder, opts)
+map('n', 'sf', lspbuf.format, opts)
+map('n', 's_', function()
+    print(vim.inspect(lspbuf.list_workspace_folders()))
+end, opts)
+map('n', 'st', lspbuf.type_definition, opts)
+map('n', 'sv', lspbuf.rename, opts)
+map('n', 's<leader>a', lspbuf.code_action, opts)
+map('n', 's<leader>r', lspbuf.references, opts)
 
 require("lspconfig").pylsp.setup{
-    on_attach = on_attach,
     capabilities = lsp_defaults.capabilities,
     settings = {
         pylsp = {
@@ -120,7 +115,6 @@ require("lspconfig").pylsp.setup{
 }
 
 require("lspconfig").lua_ls.setup({
-    on_attach = on_attach,
     capabilities = lsp_defaults.capabilities,
     settings = {
         Lua = {
@@ -147,3 +141,22 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   vim.lsp.handlers.signature_help,
   {border = 'rounded'}
 )
+
+-- Metals settings
+local metals = require("metals")
+local metals_config = metals.bare_config()
+
+metals_config.settings = {
+  showImplicitArguments = true,
+  excludedPackages = {  },
+}
+
+-- Starts Metals server
+local nvim_metals_group = api.nvim_create_augroup("nvim-metals", { clear = true })
+api.nvim_create_autocmd("FileType", {
+  pattern = { "scala", "sbt" },
+  callback = function()
+    metals.initialize_or_attach(metals_config)
+  end,
+  group = nvim_metals_group,
+})
