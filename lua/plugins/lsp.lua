@@ -78,6 +78,8 @@ map('n', 'sD', lspbuf.declaration, opts)
 map('n', 'sgd', lspbuf.definition, opts)
 map('n', 'sh', lspbuf.hover, opts)
 map('n', 'si', lspbuf.implementation, opts)
+map('n', 's<leader>h', lspbuf.signature_help, opts)
+map('n', 's<leader>ws', lspbuf.workspace_symbol, opts)
 map('n', 's+', lspbuf.add_workspace_folder, opts)
 map('n', 's-', lspbuf.remove_workspace_folder, opts)
 map('n', 'sf', lspbuf.format, opts)
@@ -148,6 +150,8 @@ local metals_config = metals.bare_config()
 
 metals_config.settings = {
   showImplicitArguments = true,
+  showInferredType = true,
+  showImplicitConversionsAndClasses = true,
   excludedPackages = {  },
 }
 
