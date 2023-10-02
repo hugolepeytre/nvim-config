@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
         "williamboman/mason-lspconfig.nvim",
         "jay-babu/mason-null-ls.nvim",
     }
+    use "simrat39/rust-tools.nvim"
     -- Scala Metals does not go through LSP ofc that would be too normal
     use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
 
