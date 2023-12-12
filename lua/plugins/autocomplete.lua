@@ -15,7 +15,7 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     },
     mapping = {
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
         ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
         ['<Down>'] = cmp.mapping.select_next_item(select_opts),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),

@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   -- a list of parser names, or "all" (the first four listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "help", "rust", "python", "scala" , "r"},
+  ensure_installed = { "c", "lua", "vim", "help", "rust", "python", "scala" , "r", "toml"},
 
   -- install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -27,5 +27,11 @@ require'nvim-treesitter.configs'.setup {
 		  scope_incremental = "<leader>vs",
 		  node_decremental = "<leader>vd",
 	  },
+  },
+
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
   },
 }

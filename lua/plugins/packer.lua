@@ -22,7 +22,6 @@ return require('packer').startup(function(use)
         "williamboman/mason-lspconfig.nvim",
         "jay-babu/mason-null-ls.nvim",
     }
-    use "simrat39/rust-tools.nvim"
     -- Scala Metals does not go through LSP ofc that would be too normal
     use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
 
@@ -41,7 +40,7 @@ return require('packer').startup(function(use)
     -- Additional features
     use "machakann/vim-sandwich" -- add or delete around selections
     use "terrortylor/nvim-comment" -- comment with gc{motion}
-    use "jiangmiao/auto-pairs" -- Autoclose pairs like brackets and quotes
+    use "LunarWatcher/auto-pairs" -- Autoclose pairs like brackets and quotes
 
     -- Color theme
     use({

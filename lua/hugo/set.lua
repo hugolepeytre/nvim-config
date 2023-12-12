@@ -30,6 +30,3 @@ vim.opt.hidden = true
 
 -- <leader> key
 vim.g.mapleader = " "
-
--- Activate auto-pair fly mode
-vim.g.AutoPairsFlyMode = 1
