@@ -19,11 +19,7 @@ require("mason-lspconfig").setup {
 -- only_local ensures mypy and pylint see imports
 local null_ls = require("null-ls")
 local null_ls_sources = {
-    -- null_ls.builtins.diagnostics.eslint_d.with({
-    --     diagnostics_format = '[eslint] #{m}\n(#{c})',
-    --     method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-    -- }),
-    null_ls.builtins.formatting.prettierd.with({}),
+    -- Python lint and formatting
     null_ls.builtins.diagnostics.mypy.with({
         only_local = ".venv/bin/",
     }),
@@ -31,37 +27,12 @@ local null_ls_sources = {
         only_local = ".venv/bin",
         method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
-    null_ls.builtins.formatting.isort,
-    null_ls.builtins.formatting.black,
 }
-
--- Ensures null_ls is always used for formatting
-local lsp_formatting = function(bufnr)
-    lspbuf.format({
-        filter = function(client)
-            -- Logic can be more complicated if needed
-            return client.name == "null-ls"
-        end,
-        bufnr = bufnr,
-    })
-end
 
 -- Format on save
 local augroup = api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
     sources = null_ls_sources,
-    on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-            api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                callback = function()
-                    lsp_formatting(bufnr)
-                end,
-            })
-        end
-    end,
 })
 
 require("mason-null-ls").setup({
