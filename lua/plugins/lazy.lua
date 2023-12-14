@@ -1,3 +1,7 @@
+-- <leader> key (has to be registered before lazy in the config)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -53,28 +57,27 @@ require("lazy").setup({
 	-- Linting
 	"mfussenegger/nvim-lint",
 
+	-- Filesystem navigation
+	{
+		"stevearc/oil.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
+
+	-- Key binding finder
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+	},
+
 	-- Additional features
 	"machakann/vim-sandwich", -- add or delete around selections
 	"terrortylor/nvim-comment", -- comment with gc{motion}
 	"LunarWatcher/auto-pairs", -- Autoclose pairs like brackets and quotes
-}, {
-	{
-		ui = {
-			icons = {
-				cmd = "⌘",
-				config = "🛠",
-				event = "📅",
-				ft = "📂",
-				init = "⚙",
-				keys = "🗝",
-				plugin = "🔌",
-				runtime = "💻",
-				require = "🌙",
-				source = "📄",
-				start = "🚀",
-				task = "📌",
-				lazy = "💤 ",
-			},
-		},
-	},
 })
+
+require("oil").setup()
+require("nvim_comment").setup({ comment_empty = false })
