@@ -28,5 +28,3 @@ vim.opt.colorcolumn = "80" -- Display 80 char line length
 -- Switch buffers faster
 vim.opt.hidden = true
 
--- <leader> key
-vim.g.mapleader = " "
