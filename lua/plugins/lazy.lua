@@ -28,9 +28,7 @@ require("lazy").setup({
 	{
 		"neovim/nvim-lspconfig",
 		"williamboman/mason.nvim",
-		{ "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 		"williamboman/mason-lspconfig.nvim",
-		"jay-babu/mason-null-ls.nvim",
 	},
 	{ "scalameta/nvim-metals", dependencies = { "nvim-lua/plenary.nvim" } },
 
@@ -51,6 +49,9 @@ require("lazy").setup({
 		"stevearc/conform.nvim",
 		opts = {},
 	},
+
+	-- Linting
+	"mfussenegger/nvim-lint",
 
 	-- Additional features
 	"machakann/vim-sandwich", -- add or delete around selections
