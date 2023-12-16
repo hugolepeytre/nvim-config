@@ -3,7 +3,7 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 
 vim.opt.tabstop = 4 -- Number of cells taken to display tab characters
-vim.opt.expandtab = true -- Insert spaces instead of tabs with <</>> and tab		
+vim.opt.expandtab = true -- Insert spaces instead of tabs with <</>> and tab
 vim.opt.shiftwidth = 4 -- Whitespace cells to add with >> and tab
 vim.opt.softtabstop = 4 -- Whitespace cells to delete with << and backspace
 
@@ -28,3 +28,4 @@ vim.opt.colorcolumn = "80" -- Display 80 char line length
 -- Switch buffers faster
 vim.opt.hidden = true
 
+vim.g.python3_host_prog = "/usr/bin/python3"
