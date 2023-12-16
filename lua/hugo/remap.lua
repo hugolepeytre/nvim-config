@@ -1,44 +1,51 @@
 local wk = require("which-key")
 wk.register({
 	n = {
-		e = { "<CMD>Oil<CMD>", "Local directory" }, -- Was vim.cmd.Ex before Oil
+		e = { "<CMD>Oil<CR>", "Local directory" }, -- Was vim.cmd.Ex before Oil
+
+		b = { ":b ", "Input buffer switch" },
+		p = { ":b#<CR>", "Previous buffer" },
 	},
+	J = { "mzJ`z", "Merge next line" },
+	K = { "i<CR><ESC>", "Split line" },
+
+	y = { '"+y', "Yank to system clipboard" },
+	Y = { '"+Y', "Yank to system clipboard" },
+	p = { '"+p', "Paste from system clipboard" },
+	P = { '"+P', "Paste from system clipboard" },
+
+	m = { "@@", "Repeat previous macro" },
+
+	d = { '"_d', "Delete to void" },
+
+	s = { "<nop>", "For sandwich" },
 }, {
 	prefix = "<leader>",
 })
 
--- Moving lines up and down in visual mode
-vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
+wk.register({
+	-- Fast vertical movement keeping cursor centered
+	J = { "<C-d>zz", "Move up, center cursor" },
+	K = { "<C-u>zz", "Move down, center cursor" },
+	n = { "nzzzv", "Next search match, center cursor" },
+	N = { "Nzzzv", "Previous search match, center cursor" },
+})
 
--- Split and merge lines, merge does not move cursor
-vim.keymap.set("n", "<leader>J", "mzJ`z")
-vim.keymap.set("n", "<leader>K", "i<CR><ESC>")
+wk.register({
+	-- Moving lines up and down in visual mode
+	J = { ":m '>+1<CR>gv=gv", "Move line down" },
+	K = { ":m '<-2<CR>gv=gv", "Move line up" },
+}, {
+	mode = "x",
+})
 
--- Fast vertical movement keeping cursor centered
-vim.keymap.set("n", "J", "<C-d>zz")
-vim.keymap.set("n", "K", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-
--- Yank/paste to/from system clipboard
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>Y", '"+Y')
-vim.keymap.set("n", "<leader>p", '"+p')
-vim.keymap.set("n", "<leader>P", '"+P')
-vim.keymap.set("x", "<leader>y", '"+y')
-
--- Delete to void register. Paste without losing register
-vim.keymap.set("n", "<leader>d", '"_d')
-vim.keymap.set("x", "<leader>d", '"_d')
-vim.keymap.set("x", "<leader>p", '"_dP')
-
--- Easier macro repeat
-vim.keymap.set("n", "<leader>m", "@@")
-
--- For sandwich
-vim.keymap.set("n", "s", "<nop>")
-
--- Buffer switching (navigation)
-vim.keymap.set("n", "<leader>nb", ":b ")
-vim.keymap.set("n", "<leader>np", ":b#<CR>")
+wk.register({ -- visual, with leader
+	-- yank to system keyboard
+	y = { '"+y', "Yank to system keyboard" },
+	-- Delete to void register. Paste without losing register
+	d = { '"_d', "Delete to void" },
+	p = { '"_dP', "Paste and keep register" },
+}, {
+	mode = "x",
+	prefix = "<leader>",
+})
