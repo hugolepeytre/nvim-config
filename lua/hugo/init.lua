@@ -1,3 +1,4 @@
+require("plugins.jukit")
 require("plugins.lazy")
 require("plugins.which-key")
 require("plugins.telescope")

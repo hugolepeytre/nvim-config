@@ -50,9 +50,6 @@ lspconfig.pylsp.setup({
 				pydocstyle = {
 					enabled = true,
 				},
-				pylint = {
-					enabled = false,
-				},
 				flake8 = {
 					enabled = true,
 					ignore = { "E203", "W503" },

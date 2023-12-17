@@ -77,6 +77,9 @@ require("lazy").setup({
 	"machakann/vim-sandwich", -- add or delete around selections
 	"terrortylor/nvim-comment", -- comment with gc{motion}
 	"LunarWatcher/auto-pairs", -- Autoclose pairs like brackets and quotes
+
+	-- Jupyter management experiments
+	"luk400/vim-jukit",
 })
 
 require("oil").setup()
