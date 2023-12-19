@@ -2,7 +2,7 @@ require("conform").setup({
 	-- Formatters have to be installed manually through Mason
 	formatters_by_ft = {
 		lua = { "stylua" },
-		python = { "isort" },
+		python = { "isort", "black" },
 		javascript = { "prettierd" },
 	},
 	format_on_save = {
