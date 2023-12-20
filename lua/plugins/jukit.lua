@@ -26,8 +26,8 @@ map("n", "ssK", ":call jukit#cells#jump_to_previous_cell()<cr>", { desc = "Go to
 map("n", "ssw", ":call jukit#cells#delete_outputs(1)<cr>", { desc = "Delete saved outputs" })
 
 map(
-	"n",
-	"ssg",
-	':call jukit#convert#notebook_convert("jupyter-notebook")<cr>',
-	{ desc = "Convert between py and ipynb" }
+    "n",
+    "ssg",
+    ':call jukit#convert#notebook_convert("jupyter-notebook")<cr>',
+    { desc = "Convert between py and ipynb" }
 )
