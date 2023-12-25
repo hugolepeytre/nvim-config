@@ -79,7 +79,13 @@ require("lazy").setup({
 	"LunarWatcher/auto-pairs", -- Autoclose pairs like brackets and quotes
 
 	-- Jupyter management experiments
-	"benlubas/molten-nvim",
+	{
+		"benlubas/molten-nvim",
+		build = ":UpdateRemotePlugins",
+		init = function()
+			vim.g.molten_output_win_max_height = 12
+		end,
+	},
 })
 
 require("oil").setup()
