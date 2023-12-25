@@ -28,4 +28,4 @@ vim.opt.colorcolumn = "80" -- Display 80 char line length
 -- Switch buffers faster
 vim.opt.hidden = true
 
-vim.g.python3_host_prog = "/usr/bin/python3"
+vim.g.python3_host_prog = vim.fn.expand("~/.venv/nvim/bin/python3")
