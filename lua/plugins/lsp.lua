@@ -6,11 +6,11 @@ local api = vim.api
 local lspbuf = vim.lsp.buf
 
 lsp_defaults.capabilities =
-    vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+	vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "rust_analyzer", "pylsp" },
+	ensure_installed = { "lua_ls", "rust_analyzer", "pylsp" },
 })
 
 -- Mappings for vim diagnostics
@@ -31,7 +31,7 @@ map("n", "s+", lspbuf.add_workspace_folder, { noremap = true, silent = true, des
 map("n", "s-", lspbuf.remove_workspace_folder, { noremap = true, silent = true, desc = "Remove workspace folder (?)" })
 map("n", "sf", lspbuf.format, { noremap = true, silent = true, desc = "Format" })
 map("n", "s_", function()
-    print(vim.inspect(lspbuf.list_workspace_folders()))
+	print(vim.inspect(lspbuf.list_workspace_folders()))
 end, { noremap = true, silent = true, desc = "List workspace folders" })
 map("n", "st", lspbuf.type_definition, { noremap = true, silent = true, desc = "Type definition" })
 map("n", "sv", lspbuf.rename, { noremap = true, silent = true, desc = "Rename" })
@@ -39,64 +39,64 @@ map("n", "s<leader>a", lspbuf.code_action, { noremap = true, silent = true, desc
 map("n", "s<leader>r", lspbuf.references, { noremap = true, silent = true, desc = "See references" })
 
 lspconfig.pylsp.setup({
-    capabilities = lsp_defaults.capabilities,
-    settings = {
-        pylsp = {
-            plugins = {
-                pycodestyle = {
-                    enabled = false,
-                },
-                pyflakes = {
-                    enabled = false,
-                },
-            },
-        },
-    },
+	capabilities = lsp_defaults.capabilities,
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = {
+					enabled = false,
+				},
+				pyflakes = {
+					enabled = false,
+				},
+			},
+		},
+	},
 })
 
 lspconfig.lua_ls.setup({
-    capabilities = lsp_defaults.capabilities,
-    settings = {
-        Lua = {
-            diagnostics = { globals = { "vim" } },
-        },
-    },
+	capabilities = lsp_defaults.capabilities,
+	settings = {
+		Lua = {
+			diagnostics = { globals = { "vim" } },
+		},
+	},
 })
 
 lspconfig.tsserver.setup({
-    capabilities = lsp_defaults.capabilities,
+	capabilities = lsp_defaults.capabilities,
 })
 
 lspconfig.rust_analyzer.setup({
-    capabilities = lsp_defaults.capabilities,
-    on_attach = function()
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            callback = function()
-                vim.lsp.buf.format({ async = false })
-            end,
-        })
-    end,
-    settings = {
-        -- Other settings here
-        -- https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
-        ["rust-analyzer"] = {
-            diagnostics = {
-                enable = false,
-            },
-            check = {
-                command = "clippy",
-            },
-        },
-    },
+	capabilities = lsp_defaults.capabilities,
+	on_attach = function()
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			callback = function()
+				vim.lsp.buf.format({ async = false })
+			end,
+		})
+	end,
+	settings = {
+		-- Other settings here
+		-- https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
+		["rust-analyzer"] = {
+			diagnostics = {
+				enable = false,
+			},
+			check = {
+				command = "clippy",
+			},
+		},
+	},
 })
 
 vim.diagnostic.config({
-    virtual_text = false,
-    severity_sort = true,
-    float = {
-        border = "rounded",
-        source = "always",
-    },
+	virtual_text = false,
+	severity_sort = true,
+	float = {
+		border = "rounded",
+		source = "always",
+	},
 })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
@@ -108,18 +108,18 @@ local metals = require("metals")
 local metals_config = metals.bare_config()
 
 metals_config.settings = {
-    showImplicitArguments = true,
-    showInferredType = true,
-    showImplicitConversionsAndClasses = true,
-    excludedPackages = {},
+	showImplicitArguments = true,
+	showInferredType = true,
+	showImplicitConversionsAndClasses = true,
+	excludedPackages = {},
 }
 
 -- Starts Metals server
 local nvim_metals_group = api.nvim_create_augroup("nvim-metals", { clear = true })
 api.nvim_create_autocmd("FileType", {
-    pattern = { "scala", "sbt" },
-    callback = function()
-        metals.initialize_or_attach(metals_config)
-    end,
-    group = nvim_metals_group,
+	pattern = { "scala", "sbt" },
+	callback = function()
+		metals.initialize_or_attach(metals_config)
+	end,
+	group = nvim_metals_group,
 })
