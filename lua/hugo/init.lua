@@ -1,4 +1,3 @@
-require("plugins.jukit")
 require("plugins.lazy")
 require("plugins.which-key")
 require("plugins.telescope")
@@ -7,6 +6,7 @@ require("plugins.lsp")
 require("plugins.autocomplete")
 require("plugins.autoformat")
 require("plugins.lint")
+require("plugins.molten")
 
 require("hugo.set")
 require("hugo.remap")
