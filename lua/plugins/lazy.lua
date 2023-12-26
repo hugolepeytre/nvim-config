@@ -79,9 +79,10 @@ require("lazy").setup({
     "LunarWatcher/auto-pairs",  -- Autoclose pairs like brackets and quotes
 
     -- Jupyter management experiments
-    {
-        "benlubas/molten-nvim",
-    },
+    "benlubas/molten-nvim",
+    "goerz/jupytext.vim",
+    "jmbuhr/otter.nvim",
+    "quarto-dev/quarto-nvim",
 })
 
 require("oil").setup()

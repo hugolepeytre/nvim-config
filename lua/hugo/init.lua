@@ -6,7 +6,7 @@ require("plugins.lsp")
 require("plugins.autocomplete")
 require("plugins.autoformat")
 require("plugins.lint")
-require("plugins.molten")
+require("plugins.notebooks")
 
 require("hugo.set")
 require("hugo.remap")

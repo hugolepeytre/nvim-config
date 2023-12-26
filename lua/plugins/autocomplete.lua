@@ -1,7 +1,7 @@
-vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 local cmp = require('cmp')
 
-local select_opts = {behavior = cmp.SelectBehavior.Select}
+local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
     snippet = {
@@ -24,15 +24,16 @@ cmp.setup({
         ['<C-e>'] = cmp.mapping.abort(),
     },
     sources = cmp.config.sources({
-        { name = 'nvim_lsp_signature_help', keyword_length = 1},
-        { name = 'nvim_lsp', keyword_length = 1},
-        { name = 'buffer', keyword_length = 3},
-        { name = 'path', keyword_length = 3},
+        { name = 'nvim_lsp_signature_help', keyword_length = 1 },
+        { name = 'nvim_lsp',                keyword_length = 1 },
+        { name = 'buffer',                  keyword_length = 3 },
+        { name = 'path',                    keyword_length = 3 },
         { name = 'luasnip' },
+        { name = 'otter' },
     }),
     formatting = {
         -- Order of fields matters
-        fields = {'kind', 'abbr', 'menu'},
+        fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, item)
             local max_item_length = 40
             local menu_icon = {
