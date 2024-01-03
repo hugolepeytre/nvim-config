@@ -73,13 +73,12 @@ require("lazy").setup({
         end,
     },
 
-    -- Highligh words under cursor
-    "RRethy/vim-illuminate",
-
     -- Additional features
-    "machakann/vim-sandwich",   -- add or delete around selections
-    "terrortylor/nvim-comment", -- comment with gc{motion}
-    "LunarWatcher/auto-pairs",  -- Autoclose pairs like brackets and quotes
+    "machakann/vim-sandwich",          -- add or delete around selections
+    "terrortylor/nvim-comment",        -- comment with gc{motion}
+    "LunarWatcher/auto-pairs",         -- Autoclose pairs like brackets and quotes
+    "RRethy/vim-illuminate",           -- Highlight word under cursor
+    "hiphish/rainbow-delimiters.nvim", -- Rainbow delimiters
 
     -- Jupyter management experiments
     "benlubas/molten-nvim",
