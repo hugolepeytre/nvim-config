@@ -12,7 +12,7 @@
 
 -- Molten setup
 local map = vim.keymap.set
-map("n", "sskr", ":MoltenRestart!<CR>", { desc = "Restart current kernel and delete outputs" })
+map("n", "ssnr", ":MoltenRestart!<CR>", { desc = "Restart current kernel and delete outputs" })
 map("n", "ssgg", ":MoltenGoto<CR>", { desc = "Go to first cell" })
 map("n", "ssgo", ":noautocmd MoltenEnterOutput<CR>", { desc = "Enter cell's output" })
 map("n", "ssj", ":MoltenNext<CR>", { desc = "Go to next cell" })

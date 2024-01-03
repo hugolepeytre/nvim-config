@@ -73,6 +73,9 @@ require("lazy").setup({
         end,
     },
 
+    -- Highligh words under cursor
+    "RRethy/vim-illuminate",
+
     -- Additional features
     "machakann/vim-sandwich",   -- add or delete around selections
     "terrortylor/nvim-comment", -- comment with gc{motion}
@@ -87,3 +90,4 @@ require("lazy").setup({
 
 require("oil").setup()
 require("nvim_comment").setup({ comment_empty = false })
+require('illuminate').configure({ min_count_to_highlight = 2 })
