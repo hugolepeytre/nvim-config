@@ -90,4 +90,9 @@ require("lazy").setup({
 
 require("oil").setup()
 require("nvim_comment").setup({ comment_empty = false })
-require('illuminate').configure({ min_count_to_highlight = 2 })
+-- lsp provider tends to slow down other lsp functionnalities, and it sometimes gives flashing, so we use treesitter if possible (tested only on pylsp)
+require('illuminate').configure({
+    modes_allowlist = { 'n' },
+    providers = { 'treesitter', 'lsp', 'regex' },
+    min_count_to_highlight = 2
+})
