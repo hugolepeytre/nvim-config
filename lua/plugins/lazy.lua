@@ -86,12 +86,3 @@ require("lazy").setup({
     "jmbuhr/otter.nvim",
     "quarto-dev/quarto-nvim",
 })
-
-require("oil").setup()
-require("nvim_comment").setup({ comment_empty = false })
--- lsp provider tends to slow down other lsp functionnalities, and it sometimes gives flashing, so we use treesitter if possible (tested only on pylsp)
-require('illuminate').configure({
-    modes_allowlist = { 'n' },
-    providers = { 'treesitter', 'lsp', 'regex' },
-    min_count_to_highlight = 2
-})
