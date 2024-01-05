@@ -29,7 +29,6 @@ cmp.setup({
         { name = 'buffer',                  keyword_length = 3 },
         { name = 'path',                    keyword_length = 3 },
         { name = 'luasnip' },
-        { name = 'otter' },
     }),
     formatting = {
         -- Order of fields matters

@@ -25,7 +25,16 @@ require("lazy").setup({
         dependencies = { { "nvim-lua/plenary.nvim" } },
     },
 
-    -- Treesitter (only for highlighting rn)
+    -- Code navigation
+    {
+        'stevearc/aerial.nvim',
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons"
+        },
+    },
+
+    -- Treesitter (highlighting + illuminate)
     { "nvim-treesitter/nvim-treesitter" },
 
     -- LSP
@@ -71,6 +80,12 @@ require("lazy").setup({
             vim.o.timeout = true
             vim.o.timeoutlen = 300
         end,
+    },
+
+    -- Statusline
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
 
     -- Additional features
