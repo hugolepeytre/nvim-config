@@ -1,6 +1,5 @@
 require("plugins.lazy")
 require("plugins.misc")
-require("plugins.which-key")
 require("plugins.navigation")
 require("plugins.treesitter")
 require("plugins.lsp")
