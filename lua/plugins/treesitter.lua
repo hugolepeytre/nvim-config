@@ -24,7 +24,7 @@ require("nvim-treesitter.configs").setup({
 			init_selection = "<leader>v", -- set to `false` to disable one of the mappings
 			node_incremental = "o",
 			scope_incremental = ";",
-			node_decremental = "p",
+			node_decremental = "u",
 		},
 	},
 

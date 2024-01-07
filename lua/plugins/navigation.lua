@@ -34,6 +34,8 @@ wk.register({
 
 vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { desc = "Go to next aerial symbol" })
 vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { desc = "Go to prev aerial symbol" })
+vim.keymap.set("v", "{", "<cmd>AerialPrev<CR>", { desc = "Go to next aerial symbol" })
+vim.keymap.set("v", "}", "<cmd>AerialNext<CR>", { desc = "Go to prev aerial symbol" })
 
 require("aerial").setup({
 	filter_kind = {
