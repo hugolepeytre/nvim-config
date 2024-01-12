@@ -1,22 +1,14 @@
--- <leader> key (has to be registered before lazy in the config)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
-end
-
-vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({
-    { "EdenEast/nightfox.nvim", priority = 1000 },
+return {
+    {
+        "EdenEast/nightfox.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            options = {
+                transparent = true
+            },
+        },
+    },
 
     -- Filesystem navigation
     {
@@ -349,7 +341,7 @@ require("lazy").setup({
             ensure_installed = { "lua_ls", "rust_analyzer", "pylsp" },
         },
     },
-    { "scalameta/nvim-metals",  dependencies = { "nvim-lua/plenary.nvim" } },
+    { "scalameta/nvim-metals", dependencies = { "nvim-lua/plenary.nvim" } },
 
     -- Autocompletion
     {
@@ -680,4 +672,4 @@ require("lazy").setup({
             }
         },
     },
-})
+}

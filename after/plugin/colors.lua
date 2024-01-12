@@ -1,9 +1,3 @@
-require('nightfox').setup({
-    options = {
-        transparent = true
-    }
-})
-
 vim.cmd.colorscheme('nightfox')
 
 vim.fn.sign_define("DiagnosticSignError",
