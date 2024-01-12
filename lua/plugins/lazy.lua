@@ -50,7 +50,16 @@ require("lazy").setup({
     {
         "folke/flash.nvim",
         event = "VeryLazy",
-        opts = {},
+        opts = {
+            modes = {
+                search = {
+                    enabled = false,
+                },
+                char = {
+                    enabled = false,
+                },
+            },
+        },
         keys = {
             { "S",         mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
             { "<leader>S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
