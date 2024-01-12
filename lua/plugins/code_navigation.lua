@@ -5,6 +5,37 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
 		},
+		opts = {
+			filter_kind = {
+				"Class",
+				"Constructor",
+				"Enum",
+				"Function",
+				"Interface",
+				"Module",
+				"Method",
+				"Struct",
+			},
+
+			-- Highlight the closest symbol if the cursor is not exactly on one.
+			highlight_closest = true,
+
+			-- The autocmds that trigger symbols update (not used for LSP backend)
+			update_events = "BufWritePost",
+
+			nerd_fond = "true",
+
+			icons = {
+				Class = "C",
+				Constructor = "@",
+				Enum = "E",
+				Function = "@",
+				Interface = "I",
+				Module = "M",
+				Method = "@",
+				Struct = "S",
+			},
+		},
 	},
 	{
 		"folke/flash.nvim",

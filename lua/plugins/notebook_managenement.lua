@@ -75,8 +75,6 @@ return {
 			map("n", "ssf", require("otter").ask_format, { noremap = true, silent = true, desc = "Format" })
 		end,
 	},
-	"goerz/jupytext.vim",
-	"jmbuhr/otter.nvim",
 	{
 		"quarto-dev/quarto-nvim",
 		opts = {
@@ -102,4 +100,6 @@ return {
 			},
 		},
 	},
+	"goerz/jupytext.vim",
+	"jmbuhr/otter.nvim",
 }

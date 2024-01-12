@@ -1,17 +1,13 @@
 return {
-	"machakann/vim-sandwich", -- add or delete around selections
 	{
 		"terrortylor/nvim-comment",
 		main = "nvim_comment",
 		opts = { comment_empty = false },
 	},
 
-	"LunarWatcher/auto-pairs", -- Autoclose pairs like brackets and quotes
 	-- lsp provider tends to slow down other lsp functionnalities, and it sometimes gives flashing, so we use treesitter if possible (tested only on pylsp)
 	{
 		"RRethy/vim-illuminate",
-		lazy = true,
-		enabled = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
@@ -40,4 +36,6 @@ return {
 			},
 		},
 	},
+	"machakann/vim-sandwich",
+	"LunarWatcher/auto-pairs",
 }
