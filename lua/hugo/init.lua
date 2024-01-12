@@ -8,7 +8,6 @@ require("plugins.autoformat")
 require("plugins.lint")
 require("plugins.statusbar")
 require("plugins.notebooks")
-require("plugins.test")
 
 require("hugo.set")
 require("hugo.remap")
