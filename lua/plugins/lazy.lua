@@ -74,10 +74,13 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter" },
 
     -- LSP
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     {
-        "neovim/nvim-lspconfig",
         "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
+        opts = {
+            ensure_installed = { "lua_ls", "rust_analyzer", "pylsp" },
+        },
     },
     { "scalameta/nvim-metals",          dependencies = { "nvim-lua/plenary.nvim" } },
 
@@ -112,18 +115,101 @@ require("lazy").setup({
         end,
     },
 
+
     -- Statusline
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' }
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = {
+            sections = {
+                lualine_a = { "mode" },
+                lualine_b = {
+                    {
+                        function()
+                            local lsps = vim.lsp.get_active_clients({ bufnr = vim.fn.bufnr() })
+                            local icon =
+                                require("nvim-web-devicons").get_icon_by_filetype(vim.api.nvim_buf_get_option(0,
+                                    "filetype"))
+                            if lsps and #lsps > 0 then
+                                local names = {}
+                                for _, lsp in ipairs(lsps) do
+                                    table.insert(names, lsp.name)
+                                end
+                                return string.format("%s %s", table.concat(names, ", "), icon)
+                            else
+                                return icon or ""
+                            end
+                        end,
+                    },
+                    {
+                        "diagnostics",
+                        sources = { "nvim_diagnostic" },
+                        symbols = { error = "E", warn = "W", info = "I", hint = "H" },
+                    },
+                },
+                lualine_c = { "filename" },
+
+                lualine_x = { "diff", "branch" },
+                lualine_y = { "aerial", "progress" },
+                lualine_z = { "location" },
+            },
+            inactive_sections = {
+                lualine_a = {},
+                lualine_b = { "filename" },
+                lualine_c = {},
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {},
+            },
+            tabline = {},
+            winbar = {},
+            inactive_winbar = {},
+            extensions = {},
+        },
     },
 
     -- Additional features
-    "machakann/vim-sandwich",          -- add or delete around selections
-    "terrortylor/nvim-comment",        -- comment with gc{motion}
-    "LunarWatcher/auto-pairs",         -- Autoclose pairs like brackets and quotes
-    "RRethy/vim-illuminate",           -- Highlight word under cursor
-    "hiphish/rainbow-delimiters.nvim", -- Rainbow delimiters
+    "machakann/vim-sandwich", -- add or delete around selections
+    {
+        "terrortylor/nvim-comment",
+        main = "nvim_comment",
+        opts = { comment_empty = false },
+    },
+
+    "LunarWatcher/auto-pairs", -- Autoclose pairs like brackets and quotes
+    -- lsp provider tends to slow down other lsp functionnalities, and it sometimes gives flashing, so we use treesitter if possible (tested only on pylsp)
+    {
+        'RRethy/vim-illuminate',
+        lazy = true,
+        enabled = true,
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+        },
+        event = { 'CursorMoved', 'InsertLeave' },
+        config = function()
+            require 'illuminate'.configure {
+                filetypes_denylist = {
+                    'neotree',
+                    'neo-tree',
+                    'Telescope',
+                    'telescope',
+                }
+            }
+        end
+    },
+    {
+        "hiphish/rainbow-delimiters.nvim", -- Rainbow delimiters
+        main = "rainbow-delimiters.setup",
+        opts = {
+            highlight = {
+                "RainbowDelimiterOrange",
+                "RainbowDelimiterBlue",
+                "RainbowDelimiterViolet",
+                "RainbowDelimiterGreen",
+                "RainbowDelimiterCyan",
+            },
+        }
+    },
 
     -- Jupyter management experiments
     "benlubas/molten-nvim",

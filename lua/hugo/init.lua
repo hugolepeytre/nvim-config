@@ -1,12 +1,10 @@
 require("plugins.lazy")
-require("plugins.misc")
 require("plugins.navigation")
 require("plugins.treesitter")
 require("plugins.lsp")
 require("plugins.autocomplete")
 require("plugins.autoformat")
 require("plugins.lint")
-require("plugins.statusbar")
 require("plugins.notebooks")
 
 require("hugo.set")
