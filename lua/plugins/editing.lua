@@ -20,6 +20,9 @@ return {
 					"Telescope",
 					"telescope",
 				},
+				modes_allowlist = { "n" },
+				providers = { "treesitter", "lsp", "regex" },
+				min_count_to_highlight = 2,
 			})
 		end,
 	},
