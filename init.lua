@@ -25,3 +25,5 @@ require("hugo")
 
 -- [tool.ruff.format]
 -- quote-style = "single"
+--
+-- Add logging, config parsing, sphinx auto-doc ?
