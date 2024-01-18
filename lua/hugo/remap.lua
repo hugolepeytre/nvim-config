@@ -104,3 +104,5 @@ map("n", "st", lspbuf.type_definition, { noremap = true, silent = true, desc = "
 map("n", "sv", lspbuf.rename, { noremap = true, silent = true, desc = "Rename" })
 map("n", "s<leader>a", lspbuf.code_action, { noremap = true, silent = true, desc = "Code actions" })
 map("n", "s<leader>r", lspbuf.references, { noremap = true, silent = true, desc = "See references" })
+local neogen = require("neogen")
+map("n", "sc", neogen.generate, { desc = "Insert docstring" })
