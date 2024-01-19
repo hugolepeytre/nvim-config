@@ -1,6 +1,7 @@
 require("telescope").load_extension("fzf")
 local builtin = require("telescope.builtin")
 local wk = require("which-key")
+local aerial = require("aerial")
 
 wk.register({
 	-- Fast vertical movement keeping cursor centered
@@ -8,8 +9,35 @@ wk.register({
 	K = { "<C-u>zz", "Move down, center cursor" },
 	n = { "nzzzv", "Next search match, center cursor" },
 	N = { "Nzzzv", "Previous search match, center cursor" },
-	["{"] = { "<cmd>AerialPrev<CR>", "Go to prev aerial symbol" },
-	["}"] = { "<cmd>AerialNext<CR>", "Go to next aerial symbol" },
+	["{"] = {
+		function()
+			aerial.prev(math.max(1, vim.v.count))
+		end,
+		"Go to prev aerial symbol",
+	},
+	["}"] = {
+		function()
+			aerial.next(math.max(1, vim.v.count))
+		end,
+		"Go to next aerial symbol",
+	},
+})
+
+wk.register({
+	["{"] = {
+		function()
+			aerial.prev(math.max(1, vim.v.count))
+		end,
+		"Go to prev aerial symbol",
+	},
+	["}"] = {
+		function()
+			aerial.next(math.max(1, vim.v.count))
+		end,
+		"Go to next aerial symbol",
+	},
+}, {
+	mode = "o",
 })
 
 wk.register({
