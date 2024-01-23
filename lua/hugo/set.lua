@@ -2,6 +2,8 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+vim.opt.equalalways = false
+
 vim.opt.tabstop = 4 -- Number of cells taken to display tab characters
 vim.opt.expandtab = true -- Insert spaces instead of tabs with <</>> and tab
 vim.opt.shiftwidth = 4 -- Whitespace cells to add with >> and tab
@@ -23,7 +25,7 @@ vim.opt.termguicolors = true -- Enables colors ??
 
 vim.opt.scrolloff = 8 -- Always keep 8 lines above and below cursor
 vim.opt.signcolumn = "yes" -- Always draw sign colum
-vim.opt.colorcolumn = "80" -- Display 80 char line length
+vim.opt.colorcolumn = "88" -- Display 88 char line length
 
 -- Switch buffers faster
 vim.opt.hidden = true
