@@ -9,7 +9,11 @@ wk.register({
 	K = { "<C-u>zz", "Move down, center cursor" },
 	n = { "nzzzv", "Next search match, center cursor" },
 	N = { "Nzzzv", "Previous search match, center cursor" },
+<<<<<<< HEAD
 	["<C-w>v"] = { ":94 vsplit<CR>", "Vertical split with correct width" },
+=======
+	["<C-w>v"] = { ":95 vsplit<CR>", "Vertical split with correct width" },
+>>>>>>> 49c4690 (Good window splitting settings)
 	["{"] = {
 		function()
 			aerial.prev(math.max(1, vim.v.count))

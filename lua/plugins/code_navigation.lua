@@ -7,7 +7,7 @@ return {
 		},
 		opts = {
 			layout = {
-				max_width = { 23, 0.15 },
+				max_width = { 21, 0.15 },
 				placement = "edge",
 			},
 

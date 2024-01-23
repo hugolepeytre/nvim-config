@@ -6,6 +6,7 @@ return {
 			-- TODOS
 			-- Image display support (long + not everything is in the readme)
 			-- Finish config quarto-nvim, otter
+			-- (ref : https://www.reddit.com/r/neovim/comments/17ynpg2/how_to_edit_jupyter_notebooks_in_neovim_with_very)
 			--
 			-- Features for now :
 			-- Can open ipynb with highlighting and execute code as cells then save modified code back to ipynb
