@@ -81,8 +81,13 @@ wk.register({
 		f = { builtin.current_buffer_fuzzy_find, "Fuzzsearch buffer symbols" },
 		g = { builtin.treesitter, "Search treesitter symbols" },
 
-		z = { builtin.diagnostics, "Search diagnostics" },
-		x = { builtin.quickfix, "Search quickfix" },
+		z = {
+			function()
+				builtin.diagnostics({ bufnr = 0 })
+			end,
+			"Search buffer diagnostics",
+		},
+		x = { builtin.diagnostics, "Search project diagnostics" },
 		c = { builtin.loclist, "Search loclist" },
 		v = { builtin.keymaps, "Search normal mode mappings" },
 		b = { "<cmd>:Neotree current reveal toggle<CR>", "Toogle filetree view" },
