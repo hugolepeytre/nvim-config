@@ -11,7 +11,6 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		event = { "CursorMoved", "InsertLeave" },
 		config = function()
 			require("illuminate").configure({
 				filetypes_denylist = {
