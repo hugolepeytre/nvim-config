@@ -14,7 +14,9 @@ return {
 				lua = { "stylua" },
 				python = { "ruff_format", "ruff_fix" },
 				typescript = { "prettierd" },
+				javascript = { "prettierd" },
 				sql = { "sql_formatter" },
+				json = { "jq" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
