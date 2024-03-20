@@ -3,6 +3,8 @@ local builtin = require("telescope.builtin")
 local wk = require("which-key")
 local aerial = require("aerial")
 
+local colors = require("hugo.colors")
+
 wk.register({
 	-- Fast vertical movement keeping cursor centered
 	J = { "<C-d>zz", "Move up, center cursor" },
@@ -109,6 +111,11 @@ wk.register({
 	d = { '"_d', "Delete to void" },
 
 	s = { "<nop>", "For sandwich" },
+
+	c = {
+		f = { colors.set_dark_theme, "Set theme to dark" },
+		j = { colors.set_light_theme, "Set theme to light" },
+	},
 }, {
 	prefix = "<leader>",
 })
