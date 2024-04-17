@@ -18,7 +18,7 @@ return {
 				html = { "prettierd" },
 				css = { "prettierd" },
 				less = { "prettierd" },
-				sql = { "sql_formatter" },
+				sql = { "sqlfluff" },
 				json = { "jq" },
 			},
 			format_on_save = {

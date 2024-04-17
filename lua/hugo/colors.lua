@@ -20,6 +20,8 @@ function M.set_dark_theme()
 	vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#3c5372" })
 	vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#3c5372" })
 
+	vim.api.nvim_set_hl(0, "Visual", { bg = "#3c5372" })
+
 	post_theme_set()
 end
 
@@ -31,10 +33,6 @@ function M.set_light_theme()
 	vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#81b29a" })
 	vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = "#f4a261" })
 	vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#9d79d6" })
-
-	vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#3c5372" })
-	vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#3c5372" })
-	vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#3c5372" })
 
 	post_theme_set()
 end

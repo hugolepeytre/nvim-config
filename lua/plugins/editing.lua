@@ -45,6 +45,11 @@ return {
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		opts = {
 			languages = {
+				typescript = {
+					template = {
+						annotation_convention = "tsdoc",
+					},
+				},
 				python = {
 					template = {
 						annotation_convention = "numpydoc",

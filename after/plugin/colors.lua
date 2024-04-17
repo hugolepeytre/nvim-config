@@ -9,6 +9,7 @@ vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#9d79d6" })
 vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#3c5372" })
 vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#3c5372" })
 vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#3c5372" })
+vim.api.nvim_set_hl(0, "Visual", { bg = "#3c5372" })
 
 vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
