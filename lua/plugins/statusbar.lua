@@ -4,7 +4,7 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			options = {
-				theme = "nightfox",
+				theme = "dayfox",
 			},
 			sections = {
 				lualine_a = { "mode" },
