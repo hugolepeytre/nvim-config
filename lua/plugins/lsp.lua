@@ -64,6 +64,8 @@ return {
 				},
 			})
 
+			lspconfig.angularls.setup({})
+
 			vim.diagnostic.config({
 				virtual_text = false,
 				severity_sort = true,

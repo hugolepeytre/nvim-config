@@ -1,6 +1,9 @@
 require("telescope").load_extension("fzf")
 local builtin = require("telescope.builtin")
 local wk = require("which-key")
+local aerial = require("aerial")
+
+local colors = require("hugo.colors")
 
 wk.register({
 	-- Fast vertical movement keeping cursor centered
@@ -8,8 +11,36 @@ wk.register({
 	K = { "<C-u>zz", "Move down, center cursor" },
 	n = { "nzzzv", "Next search match, center cursor" },
 	N = { "Nzzzv", "Previous search match, center cursor" },
-	["{"] = { "<cmd>AerialPrev<CR>", "Go to prev aerial symbol" },
-	["}"] = { "<cmd>AerialNext<CR>", "Go to next aerial symbol" },
+	["<C-w>v"] = { ":95 vsplit<CR>", "Vertical split with correct width" },
+	["{"] = {
+		function()
+			aerial.prev(math.max(1, vim.v.count))
+		end,
+		"Go to prev aerial symbol",
+	},
+	["}"] = {
+		function()
+			aerial.next(math.max(1, vim.v.count))
+		end,
+		"Go to next aerial symbol",
+	},
+})
+
+wk.register({
+	["{"] = {
+		function()
+			aerial.prev(math.max(1, vim.v.count))
+		end,
+		"Go to prev aerial symbol",
+	},
+	["}"] = {
+		function()
+			aerial.next(math.max(1, vim.v.count))
+		end,
+		"Go to next aerial symbol",
+	},
+}, {
+	mode = "o",
 })
 
 wk.register({
@@ -52,8 +83,13 @@ wk.register({
 		f = { builtin.current_buffer_fuzzy_find, "Fuzzsearch buffer symbols" },
 		g = { builtin.treesitter, "Search treesitter symbols" },
 
-		z = { builtin.diagnostics, "Search diagnostics" },
-		x = { builtin.quickfix, "Search quickfix" },
+		z = {
+			function()
+				builtin.diagnostics({ bufnr = 0 })
+			end,
+			"Search buffer diagnostics",
+		},
+		x = { builtin.diagnostics, "Search project diagnostics" },
 		c = { builtin.loclist, "Search loclist" },
 		v = { builtin.keymaps, "Search normal mode mappings" },
 		b = { "<cmd>:Neotree current reveal toggle<CR>", "Toogle filetree view" },
@@ -75,6 +111,11 @@ wk.register({
 	d = { '"_d', "Delete to void" },
 
 	s = { "<nop>", "For sandwich" },
+
+	c = {
+		f = { colors.set_dark_theme, "Set theme to dark" },
+		j = { colors.set_light_theme, "Set theme to light" },
+	},
 }, {
 	prefix = "<leader>",
 })
@@ -104,3 +145,5 @@ map("n", "st", lspbuf.type_definition, { noremap = true, silent = true, desc = "
 map("n", "sv", lspbuf.rename, { noremap = true, silent = true, desc = "Rename" })
 map("n", "s<leader>a", lspbuf.code_action, { noremap = true, silent = true, desc = "Code actions" })
 map("n", "s<leader>r", lspbuf.references, { noremap = true, silent = true, desc = "See references" })
+local neogen = require("neogen")
+map("n", "sc", neogen.generate, { desc = "Insert docstring" })

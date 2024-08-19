@@ -6,6 +6,15 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
+			layout = {
+				max_width = { 21, 0.15 },
+				placement = "edge",
+			},
+
+			attach_mode = "global",
+
+			highlight_mode = "last",
+
 			filter_kind = {
 				"Class",
 				"Constructor",
@@ -21,7 +30,7 @@ return {
 			highlight_closest = true,
 
 			-- The autocmds that trigger symbols update (not used for LSP backend)
-			update_events = "BufWritePost",
+			update_events = "InsertLeave,BufWritePost",
 
 			nerd_fond = "true",
 

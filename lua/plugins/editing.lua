@@ -11,7 +11,6 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		event = { "CursorMoved", "InsertLeave" },
 		config = function()
 			require("illuminate").configure({
 				filetypes_denylist = {
@@ -20,6 +19,9 @@ return {
 					"Telescope",
 					"telescope",
 				},
+				modes_allowlist = { "n" },
+				providers = { "treesitter", "lsp", "regex" },
+				min_count_to_highlight = 2,
 			})
 		end,
 	},
@@ -38,4 +40,22 @@ return {
 	},
 	"machakann/vim-sandwich",
 	"LunarWatcher/auto-pairs",
+	{
+		"danymat/neogen",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		opts = {
+			languages = {
+				typescript = {
+					template = {
+						annotation_convention = "tsdoc",
+					},
+				},
+				python = {
+					template = {
+						annotation_convention = "numpydoc",
+					},
+				},
+			},
+		},
+	},
 }
