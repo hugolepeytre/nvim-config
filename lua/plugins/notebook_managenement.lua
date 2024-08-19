@@ -52,7 +52,8 @@ return {
 
 			-- Quarto and otter setup (todo)
 
-			map("n", "ssa", require("otter").dev_setup, { desc = "Activate otter" })
+            -- Line commented because error during nvim startup. Not figured out what it was about
+			-- map("n", "ssa", require("otter").dev_setup, { desc = "Activate otter" })
 			map(
 				"n",
 				"ssgd",
