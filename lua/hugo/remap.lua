@@ -5,7 +5,9 @@ local aerial = require("aerial")
 
 local colors = require("hugo.colors")
 
+-- mode defaults to "n"
 wk.add({
+	mode = "n",
 	{ "<C-w>v", ":95 vsplit<CR>", desc = "Vertical split with correct width" },
 	{ "J", "<C-d>zz", desc = "Move up, center cursor" },
 	{ "K", "<C-u>zz", desc = "Move down, center cursor" },
@@ -27,8 +29,9 @@ wk.add({
 	},
 })
 
+-- Aerial in operator pending mode
 wk.add({
-	mode = { "o" },
+	mode = "o",
 	{
 		"{",
 		function()
@@ -45,102 +48,23 @@ wk.add({
 	},
 })
 
--- wk.register({
--- 	-- Moving lines up and down in visual mode
--- 	J = { ":m '>+1<CR>gv=gv", "Move line down" },
--- 	K = { ":m '<-2<CR>gv=gv", "Move line up" },
--- 	["{"] = { "<cmd>AerialPrev<CR>", "Go to prev aerial symbol" },
--- 	["}"] = { "<cmd>AerialNext<CR>", "Go to next aerial symbol" },
--- }, {
--- 	mode = "x",
--- })
-
 wk.add({
-	{
-		mode = { "x" },
-		{ "J", ":m '>+1<CR>gv=gv", desc = "Move line down" },
-		{ "K", ":m '<-2<CR>gv=gv", desc = "Move line up" },
-		{ "{", "<cmd>AerialPrev<CR>", desc = "Go to prev aerial symbol" },
-		{ "}", "<cmd>AerialNext<CR>", desc = "Go to next aerial symbol" },
-	},
-})
--- wk.register({ -- visual, with leader
--- 	-- yank to system keyboard
--- 	y = { '"+y', "Yank to system keyboard" },
--- 	-- Delete to void register. Paste without losing register
--- 	d = { '"_d', "Delete to void" },
--- 	p = { '"_dP', "Paste and keep register" },
--- }, {
--- 	mode = "x",
--- 	prefix = "<leader>",
--- })
-
-wk.add({
-	{
-		mode = { "x" },
-		{ "<leader>d", '"_d', desc = "Delete to void" },
-		{ "<leader>p", '"_dP', desc = "Paste and keep register" },
-		{ "<leader>y", '"+y', desc = "Yank to system keyboard" },
-	},
+	mode = "x",
+	{ "J", ":m '>+1<CR>gv=gv", desc = "Move line down" },
+	{ "K", ":m '<-2<CR>gv=gv", desc = "Move line up" },
+	{ "{", "<cmd>AerialPrev<CR>", desc = "Go to prev aerial symbol" },
+	{ "}", "<cmd>AerialNext<CR>", desc = "Go to next aerial symbol" },
 })
 
--- wk.register({
--- 	n = {
--- 		q = { builtin.live_grep, "Search words in files" },
--- 		w = {
--- 			function()
--- 				builtin.find_files({ no_ignore = true })
--- 			end,
--- 			"Search filenames",
--- 		},
--- 		e = { "<CMD>Oil<CR>", "Local directory" }, -- Was vim.cmd.Ex before Oil
--- 		r = { builtin.git_files, "Search Git tracked filenmes" },
--- 		t = { builtin.buffers, "Search open buffers" },
-
--- 		a = { ":Telescope aerial<CR>", "Search through aerial symbols" },
--- 		s = { builtin.lsp_document_symbols, "Search document symbols" },
--- 		d = { builtin.lsp_workspace_symbols, "Search workspace symbols" },
--- 		f = { builtin.current_buffer_fuzzy_find, "Fuzzsearch buffer symbols" },
--- 		g = { builtin.treesitter, "Search treesitter symbols" },
-
--- 		z = {
--- 			function()
--- 				builtin.diagnostics({ bufnr = 0 })
--- 			end,
--- 			"Search buffer diagnostics",
--- 		},
--- 		x = { builtin.diagnostics, "Search project diagnostics" },
--- 		c = { builtin.loclist, "Search loclist" },
--- 		v = { builtin.keymaps, "Search normal mode mappings" },
--- 		b = { "<cmd>:Neotree current reveal toggle<CR>", "Toogle filetree view" },
-
--- 		i = { "<cmd>AerialToggle!<CR>", "Toggle Aerial" },
--- 		o = { require("telescope").extensions.metals.commands, "Scala Metals commands" },
--- 		p = { ":b#<CR>", "Previous buffer" },
--- 	},
--- 	J = { "mzJ`z", "Merge next line" },
--- 	K = { "i<CR><ESC>", "Split line" },
-
--- 	y = { '"+y', "Yank to system clipboard" },
--- 	Y = { '"+Y', "Yank to system clipboard" },
--- 	p = { '"+p', "Paste from system clipboard" },
--- 	P = { '"+P', "Paste from system clipboard" },
-
--- 	m = { "@@", "Repeat previous macro" },
-
--- 	d = { '"_d', "Delete to void" },
-
--- 	s = { "<nop>", "For sandwich" },
-
--- 	c = {
--- 		f = { colors.set_dark_theme, "Set theme to dark" },
--- 		j = { colors.set_light_theme, "Set theme to light" },
--- 	},
--- }, {
--- 	prefix = "<leader>",
--- })
+wk.add({
+	mode = "x",
+	{ "<leader>d", '"_d', desc = "Delete to void" },
+	{ "<leader>p", '"_dP', desc = "Paste and keep register" },
+	{ "<leader>y", '"+y', desc = "Yank to system keyboard" },
+})
 
 wk.add({
+	mode = "n",
 	{ "<leader>J", "mzJ`z", desc = "Merge next line" },
 	{ "<leader>K", "i<CR><ESC>", desc = "Split line" },
 	{ "<leader>P", '"+P', desc = "Paste from system clipboard" },
@@ -181,7 +105,29 @@ wk.add({
 	},
 	{ "<leader>p", '"+p', desc = "Paste from system clipboard" },
 	{ "<leader>s", "<nop>", desc = "For sandwich" },
+	{ "s", "<nop>", desc = "For sandwich" },
 	{ "<leader>y", '"+y', desc = "Yank to system clipboard" },
+})
+
+-- Trial to use gs instead of s for sandwich for chiller timeout
+wk.add({
+	mode = "xn",
+	{ "gsa", "<Plug>(sandwich-add)", desc = "Alt sandwich add" },
+	{ "gsd", "<Plug>(sandwich-delete)", desc = "Alt sandwich delete" },
+	{ "gsr", "<Plug>(sandwich-replace)", desc = "Alt sandwich replace" },
+})
+
+-- Trial to use gs instead of s for sandwich for chiller timeout
+wk.add({
+	mode = "n",
+	{ "gsdb", "<Plug>(sandwich-delete-auto)", desc = "Alt sandwich delete auto" },
+	{ "gsrb", "<Plug>(sandwich-replace-auto)", desc = "Alt sandwich replace auto" },
+})
+
+-- Trial to use gs instead of s for sandwich for chiller timeout
+wk.add({
+	mode = "o",
+	{ "gsa", "<Plug>(sandwich-add)", desc = "Alt sandwich add" },
 })
 
 local map = vim.keymap.set

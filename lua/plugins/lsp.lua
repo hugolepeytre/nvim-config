@@ -55,7 +55,7 @@ return {
 					-- https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
 					["rust-analyzer"] = {
 						diagnostics = {
-							enable = false,
+							enable = true,
 						},
 						check = {
 							command = "clippy",
