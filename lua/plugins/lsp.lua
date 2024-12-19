@@ -37,7 +37,7 @@ return {
 				},
 			})
 
-			lspconfig.tsserver.setup({
+			lspconfig.ts_ls.setup({
 				capabilities = lsp_defaults.capabilities,
 			})
 
@@ -105,7 +105,7 @@ return {
 	{
 		"williamboman/mason.nvim",
 		opts = {
-			ensure_installed = { "stylua", "lua_ls", "rust_analyzer", "pylsp" },
+			ensure_installed = { "stylua", "lua_language_server", "rust-analyzer", "python-lsp-server" },
 		},
 	},
 	{
