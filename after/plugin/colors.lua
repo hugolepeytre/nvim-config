@@ -1,3 +1,3 @@
 local colors = require("hugo.colors")
 
-colors.set_dark_theme()
+colors.set_light_theme()
