@@ -105,7 +105,7 @@ return {
 	{
 		"williamboman/mason.nvim",
 		opts = {
-			ensure_installed = { "stylua", "lua_language_server", "rust-analyzer", "python-lsp-server" },
+			ensure_installed = { "stylua", "lua_language_server", "rust-analyzer" },
 		},
 	},
 	{
