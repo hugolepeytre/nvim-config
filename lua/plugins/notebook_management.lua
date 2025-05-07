@@ -19,6 +19,7 @@ return {
 			-- Molten setup
 			local map = vim.keymap.set
 			map("n", "ssnr", ":MoltenRestart!<CR>", { desc = "Restart current kernel and delete outputs" })
+			map("n", "ssni", ":MoltenInterrupt<CR>", { desc = "Interrupt current running cell" })
 			map("n", "ssgg", ":MoltenGoto<CR>", { desc = "Go to first cell" })
 			map("n", "ssgo", ":noautocmd MoltenEnterOutput<CR>", { desc = "Enter cell's output" })
 			map("n", "ssj", ":MoltenNext<CR>", { desc = "Go to next cell" })
@@ -52,7 +53,7 @@ return {
 
 			-- Quarto and otter setup (todo)
 
-            -- Line commented because error during nvim startup. Not figured out what it was about
+			-- Line commented because error during nvim startup. Not figured out what it was about
 			-- map("n", "ssa", require("otter").dev_setup, { desc = "Activate otter" })
 			map(
 				"n",

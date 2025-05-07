@@ -85,6 +85,7 @@ wk.add({
 	{ "<leader>np", ":b#<CR>", desc = "Previous buffer" },
 	{ "<leader>nq", builtin.live_grep, desc = "Search words in files" },
 	{ "<leader>nr", builtin.git_files, desc = "Search Git tracked filenmes" },
+	{ "<leader>nk", builtin.git_commits, desc = "Search Git commits" },
 	{ "<leader>ns", builtin.lsp_document_symbols, desc = "Search document symbols" },
 	{ "<leader>nt", builtin.buffers, desc = "Search open buffers" },
 	{ "<leader>nv", builtin.keymaps, desc = "Search normal mode mappings" },

@@ -20,6 +20,7 @@ return {
 				less = { "prettierd" },
 				sql = { "sqlfluff" },
 				json = { "jq" },
+				yaml = { "yamlfix" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
