@@ -15,6 +15,7 @@ return {
 				python = { "ruff_format", "ruff_fix" },
 				typescript = { "prettierd" },
 				javascript = { "prettierd" },
+				typescriptreact = { "prettierd" },
 				html = { "prettierd" },
 				css = { "prettierd" },
 				less = { "prettierd" },
