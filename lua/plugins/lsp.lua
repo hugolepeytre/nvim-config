@@ -4,16 +4,14 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			-- Loading capabilities
-			local lspconfig = require("lspconfig")
-			local lsp_defaults = lspconfig.util.default_config
 			local api = vim.api
 
-			lsp_defaults.capabilities =
-				vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			-- Mappings for vim diagnostics
-			lspconfig.pylsp.setup({
-				capabilities = lsp_defaults.capabilities,
+			vim.lsp.config("pylsp", {
+				capabilities = capabilities,
+				filetypes = { "py" },
 				settings = {
 					pylsp = {
 						plugins = {
@@ -28,21 +26,22 @@ return {
 				},
 			})
 
-			lspconfig.lua_ls.setup({
-				capabilities = lsp_defaults.capabilities,
+			vim.lsp.config("lua_ls", {
+				capabilities = capabilities,
 				settings = {
 					Lua = {
 						diagnostics = { globals = { "vim" } },
 					},
 				},
+				filetypes = { "lua" },
 			})
 
-			lspconfig.ts_ls.setup({
-				capabilities = lsp_defaults.capabilities,
+			vim.lsp.config("ts_ls", {
+				capabilities = capabilities,
 			})
 
-			lspconfig.rust_analyzer.setup({
-				capabilities = lsp_defaults.capabilities,
+			vim.lsp.config("rust_analyzer", {
+				capabilities = capabilities,
 				on_attach = function()
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						callback = function()
@@ -64,7 +63,8 @@ return {
 				},
 			})
 
-			lspconfig.angularls.setup({})
+			vim.lsp.enable({ "pylsp", "lua_ls", "ts_ls", "rust_analyzer" })
+			-- vim.lsp.enable("angularls")
 
 			vim.diagnostic.config({
 				virtual_text = false,
