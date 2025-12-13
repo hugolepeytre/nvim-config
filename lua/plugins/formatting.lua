@@ -22,6 +22,7 @@ return {
 				sql = { "sqlfluff" },
 				json = { "jq" },
 				yaml = { "yamlfix" },
+				go = { "gofmt" },
 			},
 			format_on_save = {
 				timeout_ms = 500,

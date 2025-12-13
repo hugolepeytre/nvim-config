@@ -38,6 +38,10 @@ return {
 				capabilities = capabilities,
 			})
 
+			vim.lsp.config("gopls", {
+				capabilities = capabilities,
+			})
+
 			vim.lsp.config("rust_analyzer", {
 				capabilities = capabilities,
 				on_attach = function()
@@ -61,7 +65,30 @@ return {
 				},
 			})
 
-			vim.lsp.enable({ "pylsp", "lua_ls", "ts_ls", "rust_analyzer" })
+			vim.lsp.config("", {
+				capabilities = capabilities,
+				on_attach = function()
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						callback = function()
+							vim.lsp.buf.format({ async = false })
+						end,
+					})
+				end,
+				settings = {
+					-- Other settings here
+					-- https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
+					["rust-analyzer"] = {
+						diagnostics = {
+							enable = true,
+						},
+						check = {
+							command = "clippy",
+						},
+					},
+				},
+			})
+
+			vim.lsp.enable({ "pylsp", "lua_ls", "ts_ls", "rust_analyzer", "gopls" })
 			-- vim.lsp.enable("angularls")
 
 			vim.diagnostic.config({
