@@ -11,7 +11,6 @@ return {
 			-- Mappings for vim diagnostics
 			vim.lsp.config("pylsp", {
 				capabilities = capabilities,
-				filetypes = { "py" },
 				settings = {
 					pylsp = {
 						plugins = {
@@ -33,7 +32,6 @@ return {
 						diagnostics = { globals = { "vim" } },
 					},
 				},
-				filetypes = { "lua" },
 			})
 
 			vim.lsp.config("ts_ls", {
