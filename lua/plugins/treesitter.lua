@@ -1,7 +1,6 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		main = "nvim-treesitter.configs",
 		opts = {
 			-- a list of parser names, or "all" (the first four listed parsers should always be installed)
 			ensure_installed = {

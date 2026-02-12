@@ -1,10 +1,27 @@
 local M = {}
 
 local function post_theme_set()
-	vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-	vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-	vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-	vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+	-- vim.diagnostic.config("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+	-- vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+	-- vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+	-- vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+	--
+	vim.diagnostic.config({
+		signs = {
+			text = {
+				[vim.diagnostic.severity.ERROR] = " ",
+				[vim.diagnostic.severity.WARN] = " ",
+				[vim.diagnostic.severity.INFO] = " ",
+				[vim.diagnostic.severity.HINT] = "",
+			},
+			-- linehl = {
+			--     [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+			-- },
+			-- numhl = {
+			--     [vim.diagnostic.severity.WARN] = 'WarningMsg',
+			-- },
+		},
+	})
 end
 
 function M.set_dark_theme()
