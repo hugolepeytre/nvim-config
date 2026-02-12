@@ -36,7 +36,15 @@ return {
 
 			vim.lsp.config("ts_ls", {
 				capabilities = capabilities,
+				root_markers = { { "tsconfig.json", "package.json" }, ".git" },
+				cmd = { "typescript-language-server", "--stdio", "--log-level", "4" },
 			})
+
+			-- vim.lsp.config("vtsls", {
+			-- 	capabilities = capabilities,
+			-- 	-- root_markers = { { "tsconfig.json", "package.json" }, ".git" },
+			-- 	-- cmd = { "typescript-language-server", "--stdio", "--log-level", "4" },
+			-- })
 
 			vim.lsp.config("gopls", {
 				capabilities = capabilities,
@@ -101,7 +109,7 @@ return {
 			})
 
 			vim.lsp.enable({ "pylsp", "lua_ls", "ts_ls", "rust_analyzer", "gopls" })
-			-- vim.lsp.enable("angularls")
+			vim.lsp.log.set_level("warn")
 
 			vim.diagnostic.config({
 				virtual_text = false,

@@ -19,8 +19,9 @@ return {
 				html = { "prettierd" },
 				css = { "prettierd" },
 				less = { "prettierd" },
+				json = { "prettierd" },
+				jsonc = { "prettierd" },
 				sql = { "sqlfluff" },
-				json = { "jq" },
 				yaml = { "yamlfix" },
 			},
 			format_on_save = {
