@@ -89,6 +89,8 @@ wk.add({
 	{ "<leader>ns", builtin.lsp_document_symbols, desc = "Search document symbols" },
 	{ "<leader>nt", builtin.buffers, desc = "Search open buffers" },
 	{ "<leader>nv", builtin.keymaps, desc = "Search normal mode mappings" },
+	{ "<leader>nln", ":cn<CR>", desc = "Next entry in quickfix list" },
+	{ "<leader>nlp", ":cp<CR>", desc = "Previous entry in quickfix list" },
 	{
 		"<leader>nw",
 		function()
@@ -108,6 +110,41 @@ wk.add({
 	{ "<leader>s", "<nop>", desc = "For sandwich" },
 	{ "s", "<nop>", desc = "For sandwich" },
 	{ "<leader>y", '"+y', desc = "Yank to system clipboard" },
+	{
+		"<leader>vfo",
+		function()
+			require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+		end,
+		desc = "Select outer function",
+	},
+	{
+		"<leader>vfi",
+		function()
+			require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+		end,
+		desc = "Select inner function",
+	},
+	{
+		"<leader>tsp",
+		function()
+			require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner")
+		end,
+		desc = "Swap with previous parameter",
+	},
+	{
+		"<leader>tsn",
+		function()
+			require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
+		end,
+		desc = "Swap with next parameter",
+	},
+	{
+		"<leader>tk",
+		function()
+			require("treesitter-context").go_to_context(vim.v.count1)
+		end,
+		desc = "Move up in context",
+	},
 })
 
 -- Trial to use gs instead of s for sandwich for chiller timeout
