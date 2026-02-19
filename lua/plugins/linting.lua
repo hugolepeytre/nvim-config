@@ -7,6 +7,7 @@ return {
 			lint.linters_by_ft = {
 				python = { "mypy", "ruff" },
 				typescript = { "eslint_d" },
+				typescriptreact = { "eslint_d" },
 				javascript = { "eslint_d" },
 				sql = { "sqlfluff" },
 				rust = { "clippy" },
