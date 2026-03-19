@@ -83,7 +83,26 @@ wk.add({
 	{ "<leader>ni", "<cmd>AerialToggle!<CR>", desc = "Toggle Aerial" },
 	{ "<leader>no", require("telescope").extensions.metals.commands, desc = "Scala Metals commands" },
 	{ "<leader>np", ":b#<CR>", desc = "Previous buffer" },
-	{ "<leader>nq", builtin.live_grep, desc = "Search words in files" },
+	{
+		"<leader>nq",
+		function()
+			builtin.live_grep({
+				vimgrep_arguments = {
+					-- Default arguments
+					"rg",
+					"--color=never",
+					"--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
+					"--smart-case",
+					-- Additional arguments (from ripgrep docs, rg -h)
+					"--hidden", -- Searches hidden files
+				},
+			})
+		end,
+		desc = "Search words in files",
+	},
 	{ "<leader>nr", builtin.git_files, desc = "Search Git tracked filenmes" },
 	{ "<leader>nk", builtin.git_commits, desc = "Search Git commits" },
 	{ "<leader>ns", builtin.lsp_document_symbols, desc = "Search document symbols" },
@@ -94,7 +113,11 @@ wk.add({
 	{
 		"<leader>nw",
 		function()
-			builtin.find_files({ no_ignore = true })
+			builtin.find_files({
+				hidden = true,
+				no_ignore = true,
+				file_ignore_patterns = { "node_modules", ".git$", ".venv" },
+			})
 		end,
 		desc = "Search filenames",
 	},
@@ -137,6 +160,13 @@ wk.add({
 			require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
 		end,
 		desc = "Swap with next parameter",
+	},
+	{
+		"<leader>tl",
+		function()
+			require("treesitter-context").toggle()
+		end,
+		desc = "Toggle context",
 	},
 	{
 		"<leader>tk",
