@@ -96,7 +96,7 @@ return {
 				default_method = "molten", -- 'molten' or 'slime'
 			},
 			keymap = {
-				hover = "K",
+				-- hover = "K", -- if want to use this again, choose a better mapping
 				definition = "gd",
 				rename = "<leader>lR",
 				references = "gr",
