@@ -21,8 +21,8 @@ return {
 				less = { "prettierd" },
 				json = { "prettierd" },
 				jsonc = { "prettierd" },
+				yaml = { "prettierd" },
 				sql = { "sqlfluff" },
-				yaml = { "yamlfix" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
