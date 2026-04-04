@@ -31,3 +31,7 @@ vim.opt.colorcolumn = "88" -- Display 88 char line length
 vim.opt.hidden = true
 
 vim.g.python3_host_prog = vim.fn.expand("~/.venv/nvim/bin/python3")
+
+-- Statusline config
+vim.opt.laststatus = 3
+vim.opt.statusline = "%h%m%r%f (%P) %{%v:lua.vim.diagnostic.status()%} %{%v:lua.vim.ui.progress_status()%}"
