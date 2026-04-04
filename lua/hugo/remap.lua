@@ -54,6 +54,11 @@ local function qol_remaps_visual()
 		{ "J", ":m '>+1<CR>gv=gv", desc = "Move line down" },
 		{ "K", ":m '<-2<CR>gv=gv", desc = "Move line up" },
 	})
+	wk.add({
+		mode = "xo",
+		{ "x", "an", remap = true, desc = "Increment selection" },
+		{ "m", "in", remap = true, desc = "Decrement selection" },
+	})
 end
 qol_remaps_visual()
 
@@ -174,6 +179,16 @@ local function frequent_action_maps()
 			end,
 			desc = "Flash Treesitter select",
 		},
+		{
+			"<M-j>",
+			"<cmd>cnext<CR>",
+			desc = "Next in quickfix list",
+		},
+		{
+			"<M-k>",
+			"<cmd>cprev<CR>",
+			desc = "Prev in quickfix list",
+		},
 	})
 end
 frequent_action_maps()
@@ -249,7 +264,27 @@ local function window_maps()
 			end,
 			desc = "Toggle Treesitter context",
 		},
-		-- TODO : add toggle quickfix from quicker.nvim
+		{
+			"<leader>wl",
+			function()
+				require("quicker").toggle()
+			end,
+			desc = "Toggle quickfix",
+		},
+		{
+			"<leader>wu",
+			function()
+				require("quicker").refresh()
+			end,
+			desc = "Update quickfix",
+		},
+		{
+			"<leader>we",
+			function()
+				require("quicker").toggle_expand({ before = 2, after = 2, add_to_existing = true })
+			end,
+			desc = "Expand quickfix",
+		},
 	})
 end
 window_maps()

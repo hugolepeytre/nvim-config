@@ -15,6 +15,13 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
+		"stevearc/quicker.nvim",
+		ft = "qf",
+		---@module "quicker"
+		---@type quicker.SetupOptions
+		opts = {},
+	},
+	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		dependencies = {
