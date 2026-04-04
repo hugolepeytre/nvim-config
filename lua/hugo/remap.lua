@@ -15,16 +15,24 @@ local colors = require("hugo.colors")
 -- <leader>w - [w]indow (toggle displays)
 -- <leader>h - sandwich ([h]ug)
 -- s [+ single letter] for common actions
+--
+-- Letters left for more common actions
+-- x
+-- m
+-- r (I actually use this sometimes)
+-- z (scary)
 
 -- Disabling default s in all modes
-local function disable_s()
+local function disable_builtin_maps()
 	wk.add({
 		mode = "xno",
-		{ "s", "<nop>", desc = "For sandwich" },
-		{ "<leader>s", "<nop>", desc = "For sandwich" },
+		{ "s", "<nop>", desc = "disabled" },
+		{ "<leader>s", "<nop>", desc = "disabled" },
+		{ "x", "<nop>", desc = "disabled" },
+		{ "m", "<nop>", desc = "disabled" },
 	})
 end
-disable_s()
+disable_builtin_maps()
 
 -- QoL remaps (normal)
 local function qol_remaps_normal()
@@ -139,14 +147,14 @@ local function frequent_action_maps()
 		{ "sc", neogen.generate, { desc = "Insert docstring" } },
 
 		{
-			"sf",
+			"sj",
 			function()
 				require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
 			end,
 			desc = "Select outer function",
 		},
 		{
-			"sF",
+			"sk",
 			function()
 				require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
 			end,
@@ -155,9 +163,16 @@ local function frequent_action_maps()
 		{
 			"su",
 			function()
-				require("treesitter-context").go_to_context(vim.v.count1)
+				aerial.prev_up(1)
 			end,
-			desc = "Move up in context",
+			desc = "Go to prev aerial symbol",
+		},
+		{
+			"sl",
+			function()
+				require("flash").treesitter()
+			end,
+			desc = "Flash Treesitter select",
 		},
 	})
 end
