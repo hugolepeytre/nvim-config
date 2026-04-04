@@ -26,6 +26,10 @@ return {
 		end,
 	},
 	{
+		"lewis6991/gitsigns.nvim",
+		config = true,
+	},
+	{
 		"hiphish/rainbow-delimiters.nvim", -- Rainbow delimiters
 		main = "rainbow-delimiters.setup",
 		opts = {

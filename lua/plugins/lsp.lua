@@ -4,8 +4,6 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			-- Loading capabilities
-			local api = vim.api
-
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			-- Mappings for vim diagnostics
@@ -39,12 +37,6 @@ return {
 				root_markers = { { "tsconfig.json", "package.json" }, ".git" },
 				cmd = { "typescript-language-server", "--stdio", "--log-level", "4" },
 			})
-
-			-- vim.lsp.config("vtsls", {
-			-- 	capabilities = capabilities,
-			-- 	-- root_markers = { { "tsconfig.json", "package.json" }, ".git" },
-			-- 	-- cmd = { "typescript-language-server", "--stdio", "--log-level", "4" },
-			-- })
 
 			vim.lsp.config("gopls", {
 				capabilities = capabilities,
@@ -85,29 +77,6 @@ return {
 				},
 			})
 
-			vim.lsp.config("", {
-				capabilities = capabilities,
-				on_attach = function()
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						callback = function()
-							vim.lsp.buf.format({ async = false })
-						end,
-					})
-				end,
-				settings = {
-					-- Other settings here
-					-- https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
-					["rust-analyzer"] = {
-						diagnostics = {
-							enable = true,
-						},
-						check = {
-							command = "clippy",
-						},
-					},
-				},
-			})
-
 			vim.lsp.enable({ "pylsp", "lua_ls", "ts_ls", "rust_analyzer", "gopls" })
 			vim.lsp.log.set_level("warn")
 
@@ -124,27 +93,6 @@ return {
 
 			vim.lsp.handlers["textDocument/signatureHelp"] =
 				vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-
-			-- Metals settings
-			local metals = require("metals")
-			local metals_config = metals.bare_config()
-
-			metals_config.settings = {
-				showImplicitArguments = true,
-				showInferredType = true,
-				showImplicitConversionsAndClasses = true,
-				excludedPackages = {},
-			}
-
-			-- Starts Metals server
-			local nvim_metals_group = api.nvim_create_augroup("nvim-metals", { clear = true })
-			api.nvim_create_autocmd("FileType", {
-				pattern = { "scala", "sbt" },
-				callback = function()
-					metals.initialize_or_attach(metals_config)
-				end,
-				group = nvim_metals_group,
-			})
 		end,
 	},
 	{
@@ -152,9 +100,5 @@ return {
 		opts = {
 			ensure_installed = { "stylua", "lua_language_server", "rust-analyzer" },
 		},
-	},
-	{
-		"scalameta/nvim-metals",
-		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 }
