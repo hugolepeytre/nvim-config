@@ -145,7 +145,13 @@ local function frequent_action_maps()
 
 		{ "sg", lspbuf.definition, { desc = "Go to definition" } },
 		{ "st", lspbuf.type_definition, { desc = "Type definition" } },
-		{ "sh", lspbuf.hover, { desc = "Hover" } },
+		{
+			"sh",
+			function()
+				lspbuf.hover({ border = "rounded" })
+			end,
+			{ desc = "Hover" },
+		},
 		{ "si", lspbuf.references, { desc = "See references" } },
 
 		{ "sv", lspbuf.rename, { desc = "Rename" } },
