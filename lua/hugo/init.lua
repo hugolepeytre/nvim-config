@@ -18,4 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({ import = "plugins" })
 
 require("hugo.set")
+
+-- Specific mapping that I use on startup, I want it to load fast
+vim.keymap.set("n", "<leader>nr", require("telescope.builtin").git_files)
+
 require("hugo.remap")
