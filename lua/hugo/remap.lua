@@ -250,15 +250,6 @@ local function navigation_maps()
 end
 navigation_maps()
 
-local function quickfix_maps()
-	wk.add({
-		mode = "n",
-		{ "<leader>qn", ":cn<CR>", desc = "Next entry in quickfix list" },
-		{ "<leader>qp", ":cp<CR>", desc = "Previous entry in quickfix list" },
-	})
-end
-quickfix_maps()
-
 local function window_maps()
 	wk.add({
 		mode = "n",
