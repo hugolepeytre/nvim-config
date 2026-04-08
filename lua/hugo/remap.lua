@@ -29,7 +29,7 @@ local function disable_builtin_maps()
 		{ "s", "<nop>", desc = "disabled" },
 		{ "<leader>s", "<nop>", desc = "disabled" },
 		{ "x", "<nop>", desc = "disabled" },
-		{ "m", "<nop>", desc = "disabled" },
+		{ "X", "<nop>", desc = "disabled" },
 	})
 end
 disable_builtin_maps()
@@ -57,7 +57,7 @@ local function qol_remaps_visual()
 	wk.add({
 		mode = "xo",
 		{ "x", "an", remap = true, desc = "Increment selection" },
-		{ "m", "in", remap = true, desc = "Decrement selection" },
+		{ "X", "in", remap = true, desc = "Decrement selection" },
 	})
 end
 qol_remaps_visual()
@@ -143,7 +143,7 @@ local function frequent_action_maps()
 		{ "sp", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" } },
 		{ "sn", vim.diagnostic.goto_next, { desc = "Next diagnostic" } },
 
-		{ "sg", lspbuf.definition, { desc = "Go to definition" } },
+		{ "sd", lspbuf.definition, { desc = "Go to definition" } },
 		{ "st", lspbuf.type_definition, { desc = "Type definition" } },
 		{
 			"sh",
@@ -179,11 +179,18 @@ local function frequent_action_maps()
 			desc = "Go to prev aerial symbol",
 		},
 		{
-			"sl",
+			"sm",
 			function()
 				require("flash").treesitter()
 			end,
 			desc = "Flash Treesitter select",
+		},
+		{
+			"sl",
+			function()
+				require("flash").jump()
+			end,
+			desc = "Flash jump",
 		},
 		{
 			"<M-j>",
