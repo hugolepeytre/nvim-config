@@ -119,14 +119,14 @@ local function aerial_maps()
 			desc = "Go to next aerial symbol",
 		},
 		{
-			"[",
+			"(",
 			function()
 				aerial.next_sibling(math.max(1, vim.v.count))
 			end,
 			desc = "Go to next aerial sibling",
 		},
 		{
-			"]",
+			")",
 			function()
 				aerial.prev_sibling(math.max(1, vim.v.count))
 			end,
