@@ -23,3 +23,6 @@ require("hugo.set")
 vim.keymap.set("n", "<leader>nr", require("telescope.builtin").git_files)
 
 require("hugo.remap")
+
+-- Turning aerial on by default
+require("aerial").toggle()
