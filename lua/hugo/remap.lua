@@ -118,6 +118,20 @@ local function aerial_maps()
 			end,
 			desc = "Go to next aerial symbol",
 		},
+		{
+			"[",
+			function()
+				aerial.next_sibling(math.max(1, vim.v.count))
+			end,
+			desc = "Go to next aerial sibling",
+		},
+		{
+			"]",
+			function()
+				aerial.prev_sibling(math.max(1, vim.v.count))
+			end,
+			desc = "Go to prev aerial sibling",
+		},
 	})
 end
 aerial_maps()
@@ -282,7 +296,7 @@ navigation_maps()
 local function window_maps()
 	wk.add({
 		mode = "n",
-		{ "<leader>wi", "<cmd>AerialToggle!<CR>", desc = "Toggle Aerial" },
+		{ "<leader>wi", require("aerial").toggle, desc = "Toggle Aerial" },
 		{
 			"<leader>wc",
 			function()
