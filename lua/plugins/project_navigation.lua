@@ -21,4 +21,7 @@ return {
 		---@type quicker.SetupOptions
 		opts = {},
 	},
+	{
+		"artemave/workspace-diagnostics.nvim",
+	},
 }

@@ -81,6 +81,7 @@ return {
 			vim.lsp.log.set_level("warn")
 
 			vim.diagnostic.config({
+				jump = { float = true },
 				virtual_text = false,
 				severity_sort = true,
 				float = {

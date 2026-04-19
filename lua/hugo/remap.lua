@@ -140,8 +140,20 @@ local function frequent_action_maps()
 
 	wk.add({
 		mode = "n",
-		{ "sp", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" } },
-		{ "sn", vim.diagnostic.goto_next, { desc = "Next diagnostic" } },
+		{
+			"sp",
+			function()
+				vim.diagnostic.jump({ count = -1 })
+			end,
+			desc = "Prev diagnostic",
+		},
+		{
+			"sn",
+			function()
+				vim.diagnostic.jump({ count = 1 })
+			end,
+			desc = "Next diagnostic",
+		},
 
 		{ "sd", lspbuf.definition, { desc = "Go to definition" } },
 		{ "st", lspbuf.type_definition, { desc = "Type definition" } },
@@ -253,6 +265,16 @@ local function navigation_maps()
 		{ "<leader>nf", builtin.current_buffer_fuzzy_find, desc = "Fuzzsearch buffer symbols" },
 		{ "<leader>na", ":Telescope aerial<CR>", desc = "Search through aerial symbols" },
 		{ "<leader>ng", builtin.treesitter, desc = "Search treesitter symbols" },
+		{
+			"<leader>nc",
+			function()
+				print("coucou")
+				for _, client in ipairs(vim.lsp.get_clients()) do
+					require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
+				end
+			end,
+			desc = "Populate workspace diagnostics",
+		},
 	})
 end
 navigation_maps()

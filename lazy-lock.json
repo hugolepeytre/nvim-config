@@ -10,7 +10,7 @@
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   "conform.nvim": { "branch": "master", "commit": "086a40dc7ed8242c03be9f47fbcee68699cc2395" },
   "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
-  "gitsigns.nvim": { "branch": "main", "commit": "f2ce545601fdeb755e91470b25a55705639586a4" },
+  "gitsigns.nvim": { "branch": "main", "commit": "4ed47e8c4c66c921dc1d6643977e0526e1f44396" },
   "jupytext.vim": { "branch": "master", "commit": "f15aff4515eb6a09afa0d7f41eb23be53c1e2e14" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "25f609e7fca78af7cede4f9fa3af8a94b1c4950b" },
@@ -37,5 +37,6 @@
   "telescope.nvim": { "branch": "master", "commit": "cfb85dcf7f822b79224e9e6aef9e8c794211b20b" },
   "vim-illuminate": { "branch": "master", "commit": "0d1e93684da00ab7c057410fecfc24f434698898" },
   "vim-sandwich": { "branch": "master", "commit": "74cf93d58ccc567d8e2310a69860f1b93af19403" },
-  "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" }
+  "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
+  "workspace-diagnostics.nvim": { "branch": "main", "commit": "0dcd7d0a6c8f6e1ddb5bb72e1412aa4c9388718f" }
 }
