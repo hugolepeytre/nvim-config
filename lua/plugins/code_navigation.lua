@@ -55,6 +55,12 @@ return {
 					enabled = false,
 				},
 			},
+			label = {
+				rainbow = {
+					enabled = true,
+					shade = 7,
+				},
+			},
 		},
 	},
 }

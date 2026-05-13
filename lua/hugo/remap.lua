@@ -121,16 +121,16 @@ local function aerial_maps()
 		{
 			"(",
 			function()
-				aerial.next_sibling(math.max(1, vim.v.count))
+				aerial.prev_sibling(math.max(1, vim.v.count))
 			end,
-			desc = "Go to next aerial sibling",
+			desc = "Go to prev aerial sibling",
 		},
 		{
 			")",
 			function()
-				aerial.prev_sibling(math.max(1, vim.v.count))
+				aerial.next_sibling(math.max(1, vim.v.count))
 			end,
-			desc = "Go to prev aerial sibling",
+			desc = "Go to next aerial sibling",
 		},
 	})
 end
@@ -279,16 +279,6 @@ local function navigation_maps()
 		{ "<leader>nf", builtin.current_buffer_fuzzy_find, desc = "Fuzzsearch buffer symbols" },
 		{ "<leader>na", ":Telescope aerial<CR>", desc = "Search through aerial symbols" },
 		{ "<leader>ng", builtin.treesitter, desc = "Search treesitter symbols" },
-		{
-			"<leader>nc",
-			function()
-				print("coucou")
-				for _, client in ipairs(vim.lsp.get_clients()) do
-					require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
-				end
-			end,
-			desc = "Populate workspace diagnostics",
-		},
 	})
 end
 navigation_maps()
